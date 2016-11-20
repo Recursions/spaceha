@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>SpaceHacks</title>
+		<link rel="stylesheet" type="text/css" href="style/reset.css">
+		<link rel="stylesheet/less" type="text/css" href="style/main.less">
+		<!-- LESS JS <script type="text/javascript" src="lib/less.min.js"></script> -->
+		<!--<link rel="icon" type="img/png" href="style/favicon.png" style="width:30px;">-->
+		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,900' rel='stylesheet' type='text/css'>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
+		<style>
+
+			canvas {
+				width: 512px;
+				height: 512px;
+			}
+
+		</style>
+	</head>
+
+	<body>
+
+		<canvas id="canvas" width="1000px" height="1000px"></canvas>
+
+		<script type="text/javascript" src="lib/infra.js"></script>
+		<script type="text/javascript" src="lib/circuits.js"></script>
+		<script type="text/javascript" src="lib/circuitlogic.js"></script>
+
+		<script type="text/javascript">
+
+			window.init = function(roomKey){
+
+				MissionLink.sync(roomKey);
+
+				var challenge = generateChallenge();
+				var original = challenge.original;
+
+				var FIDX = -1;
+				var boards = challenge.options;
+
+				renderCircuit(original, {
+					showNumber: false
+				});
+
+				function render(){
+					FIDX = (boards.length + FIDX) % boards.length;
+					var newCircuit = boards[FIDX];
+					if(newCircuit){
+						renderCircuit(newCircuit);
+					}
+					else{
+						alert('INDEX ERROR');
+					}
+				}
+
+				window.stepBackward = function(){
+					FIDX--;
+					render();
+				}
+
+				window.stepForward = function(){
+					FIDX++;
+					render();
+				}
+
+				MissionLink.alphaCallback = stepBackward;
+				MissionLink.gammaCallback = stepForward;
+
+				MissionLink.betaCallback = function(){
+					var res = checkCircuit(original, boards[FIDX]);
+					if(res){
+						clearCanvas();
+						drawText('Victory!', [315, 500], {
+							size: 100,
+							fill: LED_COLOR.green
+						});
+						sendCanvasImage();
+						MissionLink.unsync();
+					}
+					else{
+						clearCanvas();
+						drawText('Strike X', [315, 500], {
+							size: 100,
+							fill: LED_COLOR.red
+						});
+						sendCanvasImage();
+					}
+				}
+
+				MissionLink.deltaCallback = function(){
+					renderCircuit(original, {
+						showNumber: false
+					});
+				}
+
+			}
+
+		</script>
+
+	</body>
+</html>

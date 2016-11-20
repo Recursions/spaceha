@@ -1,0 +1,239 @@
+/*--------------------------------------------*/
+/*---> COLORS <-------------------------------*/
+/*--------------------------------------------*/
+
+@MainColor: #2d0a58;
+@MainLight: @MainColor + #222222;
+@MainDark: @MainColor - #222222;
+
+@Charcoal: #1a1a1a;
+
+@SpaceBlue: #1C344C;
+@ShipBlue: #287D7D;
+@PlanetGreen: #46B05B;
+@GasGreen: #C6E070;
+
+/*--------------------------------------------*/
+/*---> FONTS <--------------------------------*/
+/*--------------------------------------------*/
+
+@vh: 6.5px;
+@tx: 3.0 * @vh;
+
+.TitleFont(){
+	font-family: 'Bungee', sans-serif;
+}
+
+.HeadFont(){
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 800;
+}
+
+.BodyFont(){
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
+}
+
+/*--------------------------------------------*/
+/*---> TEXT <---------------------------------*/
+/*--------------------------------------------*/
+
+p, h1, h2, h3, ul, li{
+	.BodyFont();
+	margin: (1.0 * @tx) auto;
+}
+
+h1, h2, h3{
+	.HeadFont();
+	text-align: center;
+}
+
+h1{
+	font-size: 1.5 * @tx;
+	line-height: 1.75 * @tx;
+	.TitleFont();
+}
+
+h1.title{
+	font-size: 2.5 * @tx;
+	line-height: 2.75 * @tx;
+}
+
+h2{
+	font-size: 1.25 * @tx;
+	line-height: 1.5 * @tx;
+	color: @GasGreen;
+	.TitleFont();
+}
+
+h3{
+	font-size: 1.1 * @tx;
+	line-height: 1.35 * @tx;
+	color: @GasGreen;
+}
+
+p{
+	font-size: 1.0 * @tx;
+	line-height: 1.25 * @tx;
+	text-align: center;
+}
+
+li{
+	font-size: 1.0 * @tx;
+	line-height: 1.0 * @tx;
+	list-style: none;
+	margin-left: 1.5 * @tx;
+}
+
+/*--------------------------------------------*/
+/*---> BODY <---------------------------------*/
+/*--------------------------------------------*/
+
+html{
+	background: @SpaceBlue;
+	//Default Text Styles
+	.BodyFont();
+	font-size: @tx;
+	color: white;
+	background: url('engine1.jpg') no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	overflow-x: hidden;
+}
+
+body{
+	margin: 0;
+	width: 100vw;
+	margin: 0 auto;
+	padding: 0;
+}
+
+.AnimateAll(@time: 0.5s){
+	transition: all @time ease;
+	-webkit-transition: all @time ease;
+}
+
+/*--------------------------------------------*/
+/*---> HEADER & FOOTER <----------------------*/
+/*--------------------------------------------*/
+
+
+
+/*--------------------------------------------*/
+/*---> FORM <----------------------------------*/
+/*--------------------------------------------*/
+
+div.centerbox {
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
+
+div.blackbox {
+	//background: @Charcoal;
+	background: rgba(26, 26, 26, 0.75);
+	padding: 15px 0;
+	margin: 15px auto;
+	display: none;
+}
+
+input, button, select {
+	outline: none;
+	border: none;
+}
+
+button {
+
+	display: inline-block;
+	//margin: 10px auto;
+	margin: 15px;
+
+	width: 250px;
+	height: 50px;
+	line-height: 50px;
+	font-size: 20px;
+
+
+	.TitleFont();
+	background: @PlanetGreen;
+	color: white;
+
+
+	&:hover {
+		cursor: pointer;
+		background: lighten(@SpaceBlue, 10%);
+	}
+
+}
+
+@FacebookBlue: #0080FF;
+
+button.msg-button {
+
+	background: @FacebookBlue;
+
+	.BodyFont();
+
+	width: 100px;
+	height: 25px;
+	line-height: 20px;
+	font-size: 12px;
+	vertical-align: middle;
+
+	&.go-button {
+		background: @PlanetGreen;
+	}
+
+}
+
+/*--------------------------------------------*/
+/*---> STRUCTURE <----------------------------*/
+/*--------------------------------------------*/
+
+
+
+
+/*--------------------------------------------*/
+/*---> SCROLLBAR <----------------------------*/
+/*--------------------------------------------*/
+
+/*@scrollBar: white;
+@scrollBarBack: @Charcoal;
+
+::-webkit-scrollbar{
+	width: 10px;
+	height: 10px;
+	background: @scrollBarBack;
+	z-index: 50;
+}
+
+::-webkit-scrollbar-button{
+	background: @scrollBarBack;
+}
+
+::-webkit-scrollbar-track{
+	background: @scrollBarBack;
+}
+
+::-webkit-scrollbar-track-piece{
+	background: @scrollBarBack;
+}
+
+::-webkit-scrollbar-thumb{
+	background: @scrollBar;
+	//border-radius: 5px;
+	position: absolute;
+	margin-left: -10px;
+}
+
+::-webkit-scrollbar-corner{
+	width: 10px;
+	height: 10px;
+	background: @scrollBarBack;
+}
+
+::-webkit-resizer{
+	background: @scrollBarBack;
+}*/
